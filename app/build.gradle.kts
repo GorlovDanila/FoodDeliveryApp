@@ -23,7 +23,10 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -48,6 +51,10 @@ android {
 
 dependencies {
 
+    implementation(project(":core:di"))
+    implementation(project(":core:designsystem"))
+    implementation(project(":core:widget"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -57,8 +64,8 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.timber)
-    implementation(libs.koin)
-    implementation(libs.koin.compose)
+//    implementation(libs.koin)
+//    implementation(libs.koin.compose)
 
     testImplementation(libs.junit)
 
