@@ -52,8 +52,9 @@ android {
 
 dependencies {
 
-    implementation(project(":core:widget"))
+    implementation(project(":core:di"))
     implementation(project(":core:designsystem"))
+    implementation(project(":core:widget"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

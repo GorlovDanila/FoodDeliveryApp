@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.core.di"
+    namespace = "com.example.feature.signup.impl"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     compileOptions {
@@ -18,7 +18,10 @@ android {
 
 dependencies {
 
-    api(libs.koin)
-    api(libs.koin.compose)
-
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }
