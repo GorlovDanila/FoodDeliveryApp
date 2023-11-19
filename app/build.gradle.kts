@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.detekt)
 }
 
 android {
@@ -64,8 +65,8 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.timber)
-//    implementation(libs.koin)
-//    implementation(libs.koin.compose)
+    implementation(libs.koin)
+    implementation(libs.koin.compose)
 
     testImplementation(libs.junit)
 
@@ -76,4 +77,27 @@ dependencies {
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+}
+
+detekt {
+    source.setFrom(files(projectDir))
+    config.setFrom(files("${project.rootDir}/config/detekt/detekt.yml"))
+    parallel = true
+
+    reports {
+        // Enable/Disable XML report (default: true)
+        xml.required.set(false)
+        xml.outputLocation.set(file("build/reports/detekt.xml"))
+        // Enable/Disable HTML report (default: true)
+        html.required.set(true)
+        html.outputLocation.set(file("build/reports/detekt.html"))
+        // Enable/Disable TXT report (default: true)
+        txt.required.set(false)
+        txt.outputLocation.set(file("build/reports/detekt.txt"))
+        custom {
+            // The simple class name of your custom report.
+            reportId = "CustomJsonReport"
+            outputLocation.set(file("build/reports/detekt.json"))
+        }
+    }
 }
