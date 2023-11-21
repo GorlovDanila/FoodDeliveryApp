@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.core.widget"
+    namespace = "com.example.feature.cart.impl"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
@@ -18,22 +18,19 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeKotlinCompiler.get()
-    }
 }
 
 dependencies {
 
-    api(project(":core:designsystem"))
-
-    api(libs.coil)
-    api(libs.coil.svg)
-    api(libs.coil.compose)
-
     implementation(project(":core:navigation"))
-//    implementation(project(":feature:cart:api"))
+    implementation(project(":core:widget"))
+    implementation(project(":feature:cart:api"))
+
+
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }
