@@ -54,6 +54,11 @@ dependencies {
 
     implementation(project(":core:di"))
     implementation(project(":core:designsystem"))
+    implementation(project(":core:navigation"))
+    implementation(project(":feature:home:impl"))
+    implementation(project(":feature:cart:impl"))
+    implementation(project(":feature:search:impl"))
+    implementation(project(":feature:profile:impl"))
     implementation(project(":core:widget"))
 
     implementation(libs.androidx.core.ktx)

@@ -33,4 +33,7 @@ dependencies {
     api(libs.coil)
     api(libs.coil.svg)
     api(libs.coil.compose)
+
+    implementation(project(":core:navigation"))
+//    implementation(project(":feature:cart:api"))
 }
