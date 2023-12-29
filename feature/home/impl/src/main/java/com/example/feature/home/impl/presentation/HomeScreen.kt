@@ -40,13 +40,42 @@ class HomeScreen : Screen {
                         navigator = navigator
                     )
                 },
-                content = { paddingValues ->
+                content = {paddingValues ->
                     Text(
-                        modifier = Modifier.padding(paddingValues),
-                        text = "This is an example of a scaffold.",
+                            modifier = Modifier.padding(paddingValues),
+                            text = "This is an example of a scaffold.",
+                        )}
+//                content = { innerPadding ->
+//                    Column(
+//                        modifier = Modifier
+//                            .padding(innerPadding),
+//                        verticalArrangement = Arrangement.spacedBy(16.dp),
+//                    ) {
+//                        Text(
+//                            modifier = Modifier.padding(120.dp),
+//                            text = "This is an example of a scaffold.",
+//                        )
+//                    }
+//                    Row(
+//                        modifier = Modifier
+//                            .padding(innerPadding),
+//                    ) {
+//                        Text(
+//                            modifier = Modifier.padding(120.dp),
+//                            text = "This is an example of a scaffold.",
+//                        )
+//                    }
+//                    Row(
+//                        modifier = Modifier
+//                            .padding(innerPadding),
+//                    ) {
+//                        Text(
+//                            modifier = Modifier.padding(120.dp),
+//                            text = "This is an example of a scaffold.",
+//                        )
+//                    }
+//                }
                     )
                 }
-            )
         }
     }
-}
