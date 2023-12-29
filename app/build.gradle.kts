@@ -30,6 +30,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -55,6 +56,7 @@ dependencies {
     implementation(project(":core:di"))
     implementation(project(":core:designsystem"))
     implementation(project(":core:navigation"))
+    implementation(project(":core:network"))
     implementation(project(":feature:home:impl"))
     implementation(project(":feature:cart:impl"))
     implementation(project(":feature:search:impl"))
