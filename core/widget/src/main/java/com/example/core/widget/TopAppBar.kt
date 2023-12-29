@@ -1,5 +1,6 @@
 package com.example.core.widget
 
+
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -24,19 +25,24 @@ import cafe.adriel.voyager.navigator.Navigator
 import com.example.core.navigation.SharedScreen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import androidx.compose.material3.rememberTopAppBarState
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.example.core.designsystem.FoodDeliveryAppTheme
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopAppBar(
-    scrollBehavior: TopAppBarScrollBehavior,
-    navigator: Navigator,
-    scope: CoroutineScope,
+fun TopAppBar(scrollBehavior: TopAppBarScrollBehavior,
+             navigator: Navigator,
+             scope: CoroutineScope,
     drawerState: DrawerState
-) {
-    val cartScreen = rememberScreen(SharedScreen.CartScreen)
+             ) {
+  val cartScreen = rememberScreen(SharedScreen.CartScreen)
     val searchScreen = rememberScreen(SharedScreen.SearchScreen)
-
+    
     CenterAlignedTopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer,
