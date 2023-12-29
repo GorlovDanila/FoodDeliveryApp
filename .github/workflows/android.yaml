@@ -2,7 +2,7 @@ name: CI Workflow
 
 on:
   pull_request:
-    branches: [ "master", "di-koin", "feature/*" ]
+    branches: [ "master", "core/*", "feature/*", "navigation" ]
 
   workflow_dispatch:
 

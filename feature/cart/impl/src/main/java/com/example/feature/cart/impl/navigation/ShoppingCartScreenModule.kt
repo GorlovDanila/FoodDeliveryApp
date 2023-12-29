@@ -4,7 +4,7 @@ import cafe.adriel.voyager.core.registry.screenModule
 import com.example.core.navigation.SharedScreen
 import com.example.feature.cart.impl.presentation.ShoppingCartScreen
 
-val featureCartScreenModule = screenModule {
+val featureShoppingCartScreenModule = screenModule {
     register<SharedScreen.CartScreen> {
         ShoppingCartScreen()
     }

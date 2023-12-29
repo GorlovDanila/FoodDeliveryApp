@@ -57,6 +57,8 @@ dependencies {
     implementation(project(":core:navigation"))
     implementation(project(":feature:home:impl"))
     implementation(project(":feature:cart:impl"))
+    implementation(project(":feature:search:impl"))
+    implementation(project(":feature:profile:impl"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
