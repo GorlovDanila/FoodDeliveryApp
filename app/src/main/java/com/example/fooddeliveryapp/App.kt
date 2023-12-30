@@ -5,6 +5,7 @@ import cafe.adriel.voyager.core.registry.ScreenRegistry
 import com.example.core.network.di.networkModule
 import com.example.feature.cart.impl.navigation.featureShoppingCartScreenModule
 import com.example.feature.home.impl.di.homeModule
+import com.example.feature.home.impl.navigation.featureHomeScreenModule
 import com.example.feature.profile.impl.navigation.featureProfileScreenModule
 import com.example.feature.search.impl.navigation.featureSearchScreenModule
 import org.koin.android.ext.koin.androidContext
@@ -19,12 +20,14 @@ class App : Application() {
         super.onCreate()
 
         ScreenRegistry {
+            featureHomeScreenModule()
             featureShoppingCartScreenModule()
             featureSearchScreenModule()
             featureProfileScreenModule()
         }
 
         Timber.plant(Timber.DebugTree())
+
         startKoin {
             androidLogger(Level.ERROR)
             androidContext(this@App)
