@@ -1,8 +1,8 @@
 package com.example.feature.home.impl.data.datasource.remote.response
 
-import kotlinx.serialization.Serializable
+import com.google.gson.annotations.SerializedName
 
-@Serializable
 data class FoodListResponse(
+    @SerializedName("foods")
     val listFood: List<FoodResponse>
 )

@@ -5,6 +5,8 @@ import com.example.feature.home.api.usecase.GetFoodByIdUseCase
 import com.example.feature.home.api.usecase.GetFoodListUseCase
 import com.example.feature.home.impl.data.FoodRepositoryImpl
 import com.example.feature.home.impl.data.datasource.remote.FoodApi
+import com.example.feature.home.impl.presentation.presenter.DetailsScreenModel
+import com.example.feature.home.impl.presentation.presenter.HomeScreenModel
 import com.example.feature.home.impl.usecase.GetFoodByIdUseCaseImpl
 import com.example.feature.home.impl.usecase.GetFoodListUseCaseImpl
 import org.koin.dsl.module
@@ -31,6 +33,8 @@ val homeModule = module {
             foodRepository = get()
         )
     }
+    factory { HomeScreenModel(get()) }
+    factory { DetailsScreenModel(get()) }
 }
 
 private fun provideFoodApi(

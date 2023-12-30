@@ -18,7 +18,4 @@ android {
 
 dependencies {
     api(libs.bundles.voyager)
-
-//    implementation(project(":feature:home:impl"))
-//    implementation(project(":feature:cart:impl"))
 }

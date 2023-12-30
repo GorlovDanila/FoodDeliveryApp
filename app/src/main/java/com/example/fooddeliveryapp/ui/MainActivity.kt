@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import cafe.adriel.voyager.navigator.Navigator
 import com.example.core.designsystem.FoodDeliveryAppTheme
-import com.example.feature.home.impl.presentation.HomeScreen
+import com.example.feature.home.impl.presentation.ui.HomeScreen
 
 class MainActivity : ComponentActivity() {
 

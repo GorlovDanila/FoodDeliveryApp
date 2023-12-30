@@ -41,9 +41,9 @@ mockk = "1.12.4"
 okhttp = "4.11.0"
 retrofit = "2.9.0" #Ktor
 retrofitKotlinxSerializationJson = "1.0.0"
-room = "2.6.0" #SQLite
+room = "2.6.1" #SQLite
 timber = "5.0.1"
-voyager = "1.0.0-rc07"
+voyager = "1.0.0-rc10"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
