@@ -34,7 +34,14 @@ val homeModule = module {
         )
     }
     factory { HomeScreenModel(get()) }
-    factory { DetailsScreenModel(get()) }
+    factory {
+        DetailsScreenModel(
+            getFoodByIdUseCase = get(),
+            saveProductUseCase = get(),
+            getProductByTitleUseCase = get(),
+            updateProductUseCase = get(),
+        )
+    }
 }
 
 private fun provideFoodApi(

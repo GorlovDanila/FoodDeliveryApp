@@ -43,7 +43,7 @@ import com.example.feature.home.api.model.FoodInfo
 import com.example.feature.home.impl.presentation.presenter.HomeAction
 import com.example.feature.home.impl.presentation.presenter.HomeEvent
 import com.example.feature.home.impl.presentation.presenter.HomeScreenModel
-import com.example.feature.home.impl.presentation.presenter.HomeViewState
+import com.example.feature.home.impl.presentation.presenter.HomeScreenState
 
 class HomeScreen : Screen {
 
@@ -76,7 +76,7 @@ class HomeScreen : Screen {
                     )
 
                     HomeContent(
-                        viewState = state.value,
+                        screenState = state.value,
                         eventHandler = screenModel::event
                     )
 
@@ -92,12 +92,12 @@ class HomeScreen : Screen {
 
 @Composable
 fun HomeContent(
-    viewState: HomeViewState,
+    screenState: HomeScreenState,
     eventHandler: (HomeEvent) -> Unit,
 ) {
-    if (viewState.foods == null) {
+    if (screenState.foods == null) {
         eventHandler.invoke(HomeEvent.OnLoadFood)
-        if (viewState.isLoading) {
+        if (screenState.isLoading) {
             CircularProgressIndicator(
                 modifier = Modifier
                     .fillMaxSize()
@@ -106,7 +106,7 @@ fun HomeContent(
             )
         }
     } else {
-        FoodList(viewState, eventHandler)
+        FoodList(screenState, eventHandler)
     }
 }
 
@@ -132,7 +132,7 @@ private fun HomeScreenActions(
 
 @Composable
 fun FoodList(
-    viewState: HomeViewState,
+    viewState: HomeScreenState,
     eventHandler: (HomeEvent) -> Unit,
 ) {
 

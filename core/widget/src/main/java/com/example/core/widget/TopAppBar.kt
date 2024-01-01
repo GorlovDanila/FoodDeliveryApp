@@ -51,7 +51,7 @@ fun TopAppBar(
                 onClick = { navigator.push(cartScreen) }) {
                 Icon(
                     imageVector = Icons.Filled.ShoppingCart,
-                    contentDescription = "Localized description"
+                    contentDescription = null
                 )
             }
             IconButton(onClick = { navigator.push(searchScreen) }) {

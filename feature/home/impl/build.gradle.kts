@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.jetbrainsKotlinSerialization)
+    alias(libs.plugins.detekt)
 }
 
 android {
@@ -30,6 +31,7 @@ android {
 dependencies {
 
     implementation(project(":feature:home:api"))
+    implementation(project(":feature:cart:api"))
 
     implementation(project(":core:widget"))
     implementation(project(":core:network"))

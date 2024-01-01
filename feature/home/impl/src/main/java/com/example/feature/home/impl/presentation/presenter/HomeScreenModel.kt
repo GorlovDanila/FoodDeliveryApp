@@ -1,6 +1,5 @@
 package com.example.feature.home.impl.presentation.presenter
 
-import android.util.Log
 import androidx.compose.runtime.Immutable
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
@@ -16,9 +15,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
-
 @Immutable
-data class HomeViewState(
+data class HomeScreenState(
     val isLoading: Boolean = false,
     val foods: FoodListInfo? = null,
     val animInfo: FoodInfo? = null,
@@ -38,8 +36,8 @@ class HomeScreenModel(
     private val getFoodListUseCase: GetFoodListUseCase,
 ) : ScreenModel {
 
-    private val _state = MutableStateFlow(HomeViewState())
-    val state: StateFlow<HomeViewState>
+    private val _state = MutableStateFlow(HomeScreenState())
+    val state: StateFlow<HomeScreenState>
         get() = _state.asStateFlow()
 
     private val _action = MutableSharedFlow<HomeAction?>()
@@ -66,7 +64,6 @@ class HomeScreenModel(
                         foods = getFoodListUseCase.invoke()
                     )
                 )
-                Log.e("list", state.value.foods.toString())
             } catch (e: HttpException) {
                 _action.emit(HomeAction.ShowToast("An unexpected error has occurred: ${e}!"))
             } finally {

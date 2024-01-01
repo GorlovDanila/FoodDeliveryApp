@@ -1,13 +1,17 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-//    alias(libs.plugins.jetbrainsKotlinKapt)
-    id("org.jetbrains.kotlin.kapt")
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.detekt)
 }
 
 android {
     namespace = "com.example.core.db"
     compileSdk = libs.versions.compileSdk.get().toInt()
+
+    defaultConfig {
+        minSdk = libs.versions.minSdk.get().toInt()
+    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -19,7 +23,15 @@ android {
 }
 
 dependencies {
-    implementation(libs.room)
+    api(libs.room)
+    api(libs.room.ktx)
     implementation(libs.kotlinx.coroutines.core)
-    kapt(libs.room.kapt)
+    implementation(libs.koin)
+
+    ksp(libs.room.ksp)
+
+    testImplementation(libs.junit)
+
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }
