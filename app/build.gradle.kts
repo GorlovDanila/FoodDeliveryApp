@@ -57,6 +57,7 @@ dependencies {
     implementation(project(":core:designsystem"))
     implementation(project(":core:navigation"))
     implementation(project(":core:network"))
+    implementation(project(":core:db"))
     implementation(project(":feature:home:impl"))
     implementation(project(":feature:cart:impl"))
     implementation(project(":feature:search:impl"))

@@ -97,7 +97,7 @@ fun DetailsContent(
     eventHandler: (DetailsEvent) -> Unit,
 ) {
 
-    if (viewState.animInfo == null) {
+    if (viewState.foodInfo == null) {
         eventHandler.invoke(DetailsEvent.OnLoadFoodById(id))
         if (viewState.isLoading) {
             CircularProgressIndicator(
@@ -108,7 +108,10 @@ fun DetailsContent(
             )
         }
     } else {
-        DetailItem(viewState.animInfo)
+        DetailItem(
+            viewState.foodInfo,
+            eventHandler
+        )
     }
 }
 
@@ -130,6 +133,7 @@ private fun DetailsScreenActions(
 @Composable
 fun DetailItem(
     foodInfo: FoodInfo?,
+    eventHandler: (DetailsEvent) -> Unit,
 ) {
     LazyColumn(
         modifier = Modifier
@@ -249,7 +253,7 @@ fun DetailItem(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(4.dp),
-                        onClick = {},
+                        onClick = { eventHandler.invoke(DetailsEvent.OnAddToCart) },
                         shape = RoundedCornerShape(20.dp)
                     ) {
 //                        Image(

@@ -2,7 +2,9 @@ package com.example.fooddeliveryapp
 
 import android.app.Application
 import cafe.adriel.voyager.core.registry.ScreenRegistry
+import com.example.core.db.di.databaseModule
 import com.example.core.network.di.networkModule
+import com.example.feature.cart.impl.di.cartModule
 import com.example.feature.cart.impl.navigation.featureShoppingCartScreenModule
 import com.example.feature.home.impl.di.homeModule
 import com.example.feature.home.impl.navigation.featureHomeScreenModule
@@ -33,7 +35,9 @@ class App : Application() {
             androidContext(this@App)
             modules(
                 networkModule,
-                homeModule
+                databaseModule,
+                homeModule,
+                cartModule
             )
         }
     }
