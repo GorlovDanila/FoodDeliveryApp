@@ -4,7 +4,7 @@ import com.example.feature.home.api.repository.FoodRepository
 import com.example.feature.home.api.usecase.GetFoodByIdUseCase
 import com.example.feature.home.api.usecase.GetFoodListUseCase
 import com.example.feature.home.impl.data.FoodRepositoryImpl
-import com.example.feature.home.impl.data.datasource.remote.FoodApi
+import com.example.feature.home.impl.data.datasource.remote.request.FoodApi
 import com.example.feature.home.impl.presentation.presenter.DetailsScreenModel
 import com.example.feature.home.impl.presentation.presenter.HomeScreenModel
 import com.example.feature.home.impl.usecase.GetFoodByIdUseCaseImpl

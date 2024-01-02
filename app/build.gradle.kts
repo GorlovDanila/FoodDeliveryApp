@@ -58,11 +58,12 @@ dependencies {
     implementation(project(":core:navigation"))
     implementation(project(":core:network"))
     implementation(project(":core:db"))
+    implementation(project(":core:widget"))
     implementation(project(":feature:home:impl"))
     implementation(project(":feature:cart:impl"))
     implementation(project(":feature:search:impl"))
     implementation(project(":feature:profile:impl"))
-    implementation(project(":core:widget"))
+    implementation(project(":feature:auth:impl"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -75,6 +76,8 @@ dependencies {
     implementation(libs.timber)
     implementation(libs.koin)
     implementation(libs.koin.compose)
+    implementation(libs.datastore.core)
+    implementation(libs.datastore.preferences)
 
     testImplementation(libs.junit)
 

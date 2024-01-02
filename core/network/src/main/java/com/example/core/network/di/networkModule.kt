@@ -48,3 +48,4 @@ private fun provideRetrofit(
     .baseUrl(baseUrl)
     .addConverterFactory(gsonFactory)
     .build()
+

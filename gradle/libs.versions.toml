@@ -18,6 +18,8 @@ composeKotlinCompiler = "1.5.3"
 appcompat = "1.6.1"
 material = "1.10.0"
 
+androidxDatastore = "1.0.0"
+
 androidxAppCompat = "1.6.1"
 androidxCoreSplashscreen = "1.0.1"
 androidxLifecycle = "2.6.2"
@@ -103,6 +105,9 @@ voyager-tab = { group = "cafe.adriel.voyager", name = "voyager-tab-navigator", v
 voyager-koin = { group = "cafe.adriel.voyager", name = "voyager-koin", version.ref = "voyager" }
 voyager-androidx = { group = "cafe.adriel.voyager", name = "voyager-androidx", version.ref = "voyager" }
 voyager-transitions = { group = "cafe.adriel.voyager", name = "voyager-transitions", version.ref = "voyager" }
+
+datastore-core = { group = "androidx.datastore", name = "datastore-core", version.ref = "androidxDatastore" }
+datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidxDatastore" }
 
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }

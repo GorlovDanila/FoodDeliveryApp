@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import cafe.adriel.voyager.navigator.Navigator
 import com.example.core.designsystem.FoodDeliveryAppTheme
-import com.example.feature.home.impl.presentation.ui.HomeScreen
+import com.example.feature.auth.impl.presentation.ui.RegistrationScreen
 
 class MainActivity : ComponentActivity() {
 
@@ -38,7 +38,7 @@ class MainActivity : ComponentActivity() {
 //                        }
 //                    }
 //                }
-                Navigator(screen = HomeScreen())
+                Navigator(screen = RegistrationScreen())
             }
         }
     }
