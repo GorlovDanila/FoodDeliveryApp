@@ -4,6 +4,8 @@ import android.app.Application
 import cafe.adriel.voyager.core.registry.ScreenRegistry
 import com.example.core.db.di.databaseModule
 import com.example.core.network.di.networkModule
+import com.example.feature.auth.impl.di.authModule
+import com.example.feature.auth.impl.navigation.featureAuthorizationScreenModule
 import com.example.feature.cart.impl.di.cartModule
 import com.example.feature.cart.impl.navigation.featureShoppingCartScreenModule
 import com.example.feature.home.impl.di.homeModule
@@ -26,6 +28,7 @@ class App : Application() {
             featureShoppingCartScreenModule()
             featureSearchScreenModule()
             featureProfileScreenModule()
+            featureAuthorizationScreenModule()
         }
 
         Timber.plant(Timber.DebugTree())
@@ -37,7 +40,8 @@ class App : Application() {
                 networkModule,
                 databaseModule,
                 homeModule,
-                cartModule
+                cartModule,
+                authModule
             )
         }
     }

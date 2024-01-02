@@ -1,4 +1,4 @@
-package com.example.feature.home.impl.data.datasource.remote
+package com.example.feature.home.impl.data.datasource.remote.request
 
 import com.example.feature.home.impl.data.datasource.remote.response.FoodListResponse
 import com.example.feature.home.impl.data.datasource.remote.response.FoodResponse
