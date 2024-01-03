@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.detekt)
     alias(libs.plugins.google.service)
     id("com.google.firebase.crashlytics")
+    id("com.google.firebase.firebase-perf")
 }
 
 android {
@@ -81,6 +82,7 @@ dependencies {
     implementation(libs.datastore.preferences)
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.perf)
 
     testImplementation(libs.junit)
 

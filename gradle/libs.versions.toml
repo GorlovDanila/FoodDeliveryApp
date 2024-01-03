@@ -52,6 +52,8 @@ firebaseAnalyticsVersion = "21.5.0"
 firebaseCrashlyticsVersion = "18.6.0"
 gradle = "8.1.0"
 firebaseCrashlyticsGradle = "2.9.9"
+firebasePerf = "20.5.1"
+perfPlugin = "1.4.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -122,6 +124,8 @@ firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics", version.ref = "firebaseCrashlyticsVersion" }
 gradle = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
 firebase-crashlytics-gradle = { group = "com.google.firebase", name = "firebase-crashlytics-gradle", version.ref = "firebaseCrashlyticsGradle" }
+firebase-perf = { group = "com.google.firebase", name = "firebase-perf", version.ref = "firebasePerf" }
+perf-plugin = { group = "com.google.firebase", name = "perf-plugin", version.ref = "perfPlugin" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
