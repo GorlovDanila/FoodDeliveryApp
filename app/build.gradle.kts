@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.detekt)
+    alias(libs.plugins.google.service)
+//    id("com.google.gms.google-services")
 }
 
 android {
@@ -77,6 +79,7 @@ dependencies {
     implementation(libs.koin.compose)
     implementation(libs.datastore.core)
     implementation(libs.datastore.preferences)
+    implementation(libs.firebase.analytics)
 
     testImplementation(libs.junit)
 

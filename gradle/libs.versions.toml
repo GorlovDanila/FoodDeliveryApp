@@ -47,6 +47,8 @@ retrofitKotlinxSerializationJson = "1.0.0"
 room = "2.6.0" #SQLite
 timber = "5.0.1"
 voyager = "1.0.0-rc10"
+googleServices = "4.4.0"
+firebaseAnalyticsVersion = "21.5.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -112,6 +114,8 @@ datastore-preferences = { group = "androidx.datastore", name = "datastore-prefer
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+google-services = { group = "com.google.gms", name = "google-services", version.ref = "googleServices" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics", version.ref = "firebaseAnalyticsVersion" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

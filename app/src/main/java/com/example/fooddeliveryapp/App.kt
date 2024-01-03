@@ -12,6 +12,7 @@ import com.example.feature.home.impl.di.homeModule
 import com.example.feature.home.impl.navigation.featureHomeScreenModule
 import com.example.feature.profile.impl.di.profileModule
 import com.example.feature.profile.impl.navigation.featureProfileScreenModule
+import com.example.fooddeliveryapp.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -36,6 +37,7 @@ class App : Application() {
             androidLogger(Level.ERROR)
             androidContext(this@App)
             modules(
+                appModule,
                 networkModule,
                 databaseModule,
                 homeModule,
