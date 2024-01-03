@@ -94,13 +94,13 @@ class RegistrationScreenModel(
 
     private fun isAuthenticatedCheck() {
         screenModelScope.launch {
-            Log.e("authCheck", isAuthenticatedUserUseCase.invoke().toString())
+//            Log.e("authCheck", isAuthenticatedUserUseCase.invoke().toString())
             _state.emit(
                 _state.value.copy(
                     isAuthenticated = isAuthenticatedUserUseCase.invoke()
                 )
             )
-//            Log.e("authCheck", state.value.isAuthenticated.toString())
+            Log.e("authCheck", state.value.isAuthenticated.toString())
         }
     }
 }
