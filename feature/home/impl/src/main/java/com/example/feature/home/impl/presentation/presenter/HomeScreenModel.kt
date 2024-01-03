@@ -85,8 +85,8 @@ class HomeScreenModel(
             putLong(FirebaseAnalytics.Param.ITEM_ID, foodInfo.id)
             putString(FirebaseAnalytics.Param.ITEM_NAME, foodInfo.title)
         }
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
         screenModelScope.launch {
-            firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
             _action.emit(HomeAction.Navigate(foodId = foodInfo.id))
         }
     }

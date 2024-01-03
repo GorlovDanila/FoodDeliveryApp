@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.detekt)
     alias(libs.plugins.google.service)
-//    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -80,6 +80,7 @@ dependencies {
     implementation(libs.datastore.core)
     implementation(libs.datastore.preferences)
     implementation(libs.firebase.analytics)
+    implementation(libs.firebase.crashlytics)
 
     testImplementation(libs.junit)
 

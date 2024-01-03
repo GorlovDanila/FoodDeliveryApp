@@ -9,12 +9,8 @@ import com.example.feature.auth.impl.presentation.ui.RegistrationScreen
 
 class MainActivity : ComponentActivity() {
 
-//    private lateinit var analytics: FirebaseAnalytics
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-//        analytics = Firebase.analytics
 
         setContent {
             FoodDeliveryAppTheme {
