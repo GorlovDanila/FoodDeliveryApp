@@ -32,9 +32,15 @@ dependencies {
     implementation(project(":core:navigation"))
     implementation(project(":core:widget"))
     implementation(project(":feature:profile:api"))
+    implementation(project(":feature:auth:api"))
 
     implementation(libs.koin)
     implementation(libs.koin.compose)
+    implementation(libs.androidx.lifecycle.viewModelCompose)
+    implementation(libs.androidx.lifecycle.runtime)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.datastore.core)
+    implementation(libs.datastore.preferences)
 
     testImplementation(libs.junit)
 

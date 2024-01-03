@@ -11,6 +11,8 @@ interface UserRepository {
 
     suspend fun onAuthentication() : Preferences
 
+    suspend fun isAuthenticated() : Boolean?
+
     suspend fun saveCurrentUser(login: String, password: String) : Preferences
 
     suspend fun getCurrentUser() : User

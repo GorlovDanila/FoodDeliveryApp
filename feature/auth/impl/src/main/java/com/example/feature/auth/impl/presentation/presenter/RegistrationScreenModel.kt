@@ -1,9 +1,13 @@
 package com.example.feature.auth.impl.presentation.presenter
 
+import android.util.Log
 import androidx.compose.runtime.Immutable
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
+import cafe.adriel.voyager.core.screen.Screen
+import com.example.feature.auth.api.usecase.IsAuthenticatedUserUseCase
 import com.example.feature.auth.api.usecase.RegisterUserUseCase
+import com.example.feature.auth.impl.presentation.ui.AuthorizationScreen
 import com.example.feature.auth.impl.utils.AuthConstants
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,20 +21,23 @@ import retrofit2.HttpException
 @Immutable
 data class RegistrationScreenState(
     val isLoading: Boolean = false,
+    val isAuthenticated: Boolean? = null,
 )
 
 sealed interface RegistrationEvent {
     data class OnRegisterUser(val login: String, val password: String) : RegistrationEvent
-    data object OnNavigateClick : RegistrationEvent
+    data class OnNavigate(val screen: Screen) : RegistrationEvent
+    data object IsAuthenticatedCheck : RegistrationEvent
 }
 
 sealed interface RegistrationAction {
-    data object Navigate : RegistrationAction
+    data class Navigate(val screen: Screen) : RegistrationAction
     data class ShowToast(val text: String) : RegistrationAction
 }
 
 class RegistrationScreenModel(
     private val registerUserUseCase: RegisterUserUseCase,
+    private val isAuthenticatedUserUseCase: IsAuthenticatedUserUseCase,
 ) : ScreenModel {
 
     private val _state = MutableStateFlow(RegistrationScreenState())
@@ -47,8 +54,8 @@ class RegistrationScreenModel(
                 registrationEvent.login,
                 registrationEvent.password
             )
-
-            is RegistrationEvent.OnNavigateClick -> onNavigateClick()
+            is RegistrationEvent.OnNavigate -> onNavigate(registrationEvent.screen)
+            is RegistrationEvent.IsAuthenticatedCheck -> isAuthenticatedCheck()
         }
     }
 
@@ -66,7 +73,7 @@ class RegistrationScreenModel(
                     _action.emit(RegistrationAction.ShowToast("Пользователь с такими данными уже существует"))
                 } else {
                     _action.emit(RegistrationAction.ShowToast("Пользователь успешно зарегистрирован"))
-                    onNavigateClick()
+                    onNavigate(AuthorizationScreen())
                 }
 
             } catch (e: HttpException) {
@@ -81,7 +88,19 @@ class RegistrationScreenModel(
         }
     }
 
-    private fun onNavigateClick() {
-        screenModelScope.launch { _action.emit(RegistrationAction.Navigate) }
+    private fun onNavigate(screen: Screen) {
+        screenModelScope.launch { _action.emit(RegistrationAction.Navigate(screen)) }
+    }
+
+    private fun isAuthenticatedCheck() {
+        screenModelScope.launch {
+            Log.e("authCheck", isAuthenticatedUserUseCase.invoke().toString())
+            _state.emit(
+                _state.value.copy(
+                    isAuthenticated = isAuthenticatedUserUseCase.invoke()
+                )
+            )
+//            Log.e("authCheck", state.value.isAuthenticated.toString())
+        }
     }
 }

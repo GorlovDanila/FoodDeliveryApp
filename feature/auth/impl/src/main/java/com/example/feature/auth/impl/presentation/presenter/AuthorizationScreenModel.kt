@@ -1,9 +1,11 @@
 package com.example.feature.auth.impl.presentation.presenter
 
+import android.util.Log
 import androidx.compose.runtime.Immutable
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import com.example.feature.auth.api.usecase.AuthorizeUserUseCase
+import com.example.feature.auth.api.usecase.GetCurrentUserUseCase
 import com.example.feature.auth.api.usecase.OnAuthenticationUserUseCase
 import com.example.feature.auth.api.usecase.SaveCurrentUserUseCase
 import com.example.feature.auth.impl.utils.AuthConstants
@@ -34,6 +36,7 @@ class AuthorizationScreenModel(
     private val authorizeUserUseCase: AuthorizeUserUseCase,
     private val saveCurrentUserUseCase: SaveCurrentUserUseCase,
     private val onAuthenticationUserUseCase: OnAuthenticationUserUseCase,
+    private val getCurrentUserUseCase: GetCurrentUserUseCase,
 ) : ScreenModel {
 
     private val _state = MutableStateFlow(AuthorizationScreenState())
@@ -68,6 +71,7 @@ class AuthorizationScreenModel(
                 } else {
                     saveCurrentUserUseCase.invoke(login, password)
                     onAuthenticationUserUseCase.invoke()
+                    Log.e("eeeeeeeeeeeeeeeeeee", getCurrentUserUseCase.invoke().toString())
                     onNavigateClick()
                 }
 

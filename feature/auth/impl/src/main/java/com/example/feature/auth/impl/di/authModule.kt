@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.feature.auth.api.repository.UserRepository
 import com.example.feature.auth.api.usecase.AuthorizeUserUseCase
 import com.example.feature.auth.api.usecase.GetCurrentUserUseCase
+import com.example.feature.auth.api.usecase.IsAuthenticatedUserUseCase
 import com.example.feature.auth.api.usecase.OnAuthenticationUserUseCase
 import com.example.feature.auth.api.usecase.OnSignOutUserUseCase
 import com.example.feature.auth.api.usecase.RegisterUserUseCase
@@ -15,6 +16,7 @@ import com.example.feature.auth.impl.presentation.presenter.AuthorizationScreenM
 import com.example.feature.auth.impl.presentation.presenter.RegistrationScreenModel
 import com.example.feature.auth.impl.usecase.AuthorizeUserUseCaseImpl
 import com.example.feature.auth.impl.usecase.GetCurrentUserUseCaseImpl
+import com.example.feature.auth.impl.usecase.IsAuthenticatedUserUseCaseImpl
 import com.example.feature.auth.impl.usecase.OnAuthenticationUserUseCaseImpl
 import com.example.feature.auth.impl.usecase.OnSignOutUseCaseImpl
 import com.example.feature.auth.impl.usecase.RegisterUserUseCaseImpl
@@ -69,9 +71,15 @@ val authModule = module {
             userRepository = get()
         )
     }
+    single {
+        provideIsAuthenticatedUserUseCase(
+            userRepository = get()
+        )
+    }
     factory {
         RegistrationScreenModel(
             registerUserUseCase = get(),
+            isAuthenticatedUserUseCase = get(),
         )
     }
     factory {
@@ -79,6 +87,7 @@ val authModule = module {
             authorizeUserUseCase = get(),
             saveCurrentUserUseCase = get(),
             onAuthenticationUserUseCase = get(),
+            getCurrentUserUseCase = get(),
         )
     }
 }
@@ -119,3 +128,7 @@ private fun provideSaveCurrentUserUseCase(
 private fun provideOnAuthenticationUserUseCase(
     userRepository: UserRepository
 ): OnAuthenticationUserUseCase = OnAuthenticationUserUseCaseImpl(userRepository)
+
+private fun provideIsAuthenticatedUserUseCase(
+    userRepository: UserRepository
+): IsAuthenticatedUserUseCase = IsAuthenticatedUserUseCaseImpl(userRepository)
