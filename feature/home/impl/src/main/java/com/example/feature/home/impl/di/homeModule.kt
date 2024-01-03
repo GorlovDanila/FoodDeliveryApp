@@ -33,7 +33,12 @@ val homeModule = module {
             foodRepository = get()
         )
     }
-    factory { HomeScreenModel(get()) }
+    factory {
+        HomeScreenModel(
+            getFoodListUseCase = get(),
+            firebaseAnalytics = get(),
+        )
+    }
     factory {
         DetailsScreenModel(
             getFoodByIdUseCase = get(),

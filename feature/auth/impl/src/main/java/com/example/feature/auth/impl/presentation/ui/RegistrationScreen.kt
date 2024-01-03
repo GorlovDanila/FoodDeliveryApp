@@ -71,9 +71,9 @@ fun RegistrationContent(
     screenState: RegistrationScreenState,
     eventHandler: (RegistrationEvent) -> Unit,
 ) {
-    if (screenState.isAuthenticated == null) {
-        eventHandler.invoke(RegistrationEvent.IsAuthenticatedCheck)
-    } else {
+//    if (screenState.isAuthenticated == null) {
+//        eventHandler.invoke(RegistrationEvent.IsAuthenticatedCheck)
+//    } else {
 //        eventHandler.invoke(RegistrationEvent.OnNavigate(homeScreen))
 //    } else if (!screenState.isAuthenticated) {
         if (screenState.isLoading) {
@@ -87,7 +87,7 @@ fun RegistrationContent(
             RegistrationUI(eventHandler, screenState)
         }
     }
-}
+//}
 
 @Composable
 private fun RegistrationScreenActions(

@@ -1,11 +1,13 @@
 package com.example.feature.home.impl.presentation.presenter
 
+import android.os.Bundle
 import androidx.compose.runtime.Immutable
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import com.example.feature.home.api.model.FoodInfo
 import com.example.feature.home.api.model.FoodListInfo
 import com.example.feature.home.api.usecase.GetFoodListUseCase
+import com.google.firebase.analytics.FirebaseAnalytics
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -34,6 +36,7 @@ sealed interface HomeAction {
 
 class HomeScreenModel(
     private val getFoodListUseCase: GetFoodListUseCase,
+    private val firebaseAnalytics: FirebaseAnalytics,
 ) : ScreenModel {
 
     private val _state = MutableStateFlow(HomeScreenState())
@@ -77,6 +80,14 @@ class HomeScreenModel(
     }
 
     private fun onFoodClick(foodInfo: FoodInfo) {
-        screenModelScope.launch { _action.emit(HomeAction.Navigate(foodId = foodInfo.id)) }
+        val bundle = Bundle()
+        bundle.apply {
+            putLong(FirebaseAnalytics.Param.ITEM_ID, foodInfo.id)
+            putString(FirebaseAnalytics.Param.ITEM_NAME, foodInfo.title)
+        }
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
+        screenModelScope.launch {
+            _action.emit(HomeAction.Navigate(foodId = foodInfo.id))
+        }
     }
 }
