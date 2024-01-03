@@ -25,6 +25,9 @@ class UserRepositoryImpl(
     override suspend fun onAuthentication(): Preferences =
         withContext(dispatcherIO) { authDataStore.onAuthentication() }
 
+    override suspend fun isAuthenticated(): Boolean? =
+        withContext(dispatcherIO) { authDataStore.isAuthenticated() }
+
     override suspend fun saveCurrentUser(login: String, password: String): Preferences =
         withContext(dispatcherIO) {
             authDataStore.onAuthentication()
@@ -35,8 +38,8 @@ class UserRepositoryImpl(
     override suspend fun getCurrentUser(): User =
         withContext(dispatcherIO) {
             User(
-                authDataStore.getCurrentUserLogin().toString(),
-                authDataStore.getCurrentUserPassword().toString()
+                authDataStore.getCurrentUserLogin() ?: "",
+                authDataStore.getCurrentUserPassword() ?: "",
             )
         }
 

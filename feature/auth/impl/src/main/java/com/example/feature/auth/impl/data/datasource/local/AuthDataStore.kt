@@ -7,34 +7,38 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 
 class AuthDataStore(
     private val context: Context
 ) {
-
-    fun isAuthenticated() : Flow<Boolean?> = context.dataStore.data.map {
+    suspend fun isAuthenticated(): Boolean? = context.dataStore.data.map {
         it.get(key = IS_AUTHENTICATED_KEY)
-    }
+    }.flowOn(Dispatchers.IO)
+        .first()
 
-    suspend fun onAuthentication() : Preferences = context.dataStore.edit {
+    suspend fun onAuthentication(): Preferences = context.dataStore.edit {
         it[IS_AUTHENTICATED_KEY] = true
     }
 
-    fun getCurrentUserLogin() : Flow<String?> = context.dataStore.data.map {
+    suspend fun getCurrentUserLogin(): String? = context.dataStore.data.map {
         it.get(key = CURRENT_USER_LOGIN_KEY)
-    }
+    }.flowOn(Dispatchers.IO)
+        .first()
 
-    suspend fun saveCurrentUserLogin(login: String) : Preferences = context.dataStore.edit {
+    suspend fun saveCurrentUserLogin(login: String): Preferences = context.dataStore.edit {
         it[CURRENT_USER_LOGIN_KEY] = login
     }
 
-    fun getCurrentUserPassword() : Flow<String?> = context.dataStore.data.map {
+    suspend fun getCurrentUserPassword(): String? = context.dataStore.data.map {
         it.get(key = CURRENT_USER_PASSWORD_KEY)
-    }
+    }.flowOn(Dispatchers.IO)
+        .first()
 
-    suspend fun saveCurrentUserPassword(password: String) : Preferences = context.dataStore.edit {
+    suspend fun saveCurrentUserPassword(password: String): Preferences = context.dataStore.edit {
         it[CURRENT_USER_PASSWORD_KEY] = password
     }
 

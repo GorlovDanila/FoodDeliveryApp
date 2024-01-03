@@ -61,7 +61,6 @@ dependencies {
     implementation(project(":core:widget"))
     implementation(project(":feature:home:impl"))
     implementation(project(":feature:cart:impl"))
-    implementation(project(":feature:search:impl"))
     implementation(project(":feature:profile:impl"))
     implementation(project(":feature:auth:impl"))
 

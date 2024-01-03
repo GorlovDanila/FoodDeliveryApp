@@ -1,5 +1,6 @@
 package com.example.feature.auth.impl.presentation.ui
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -10,7 +11,6 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -27,18 +27,20 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import cafe.adriel.voyager.core.registry.rememberScreen
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import com.example.core.navigation.SharedScreen
 import com.example.feature.auth.impl.presentation.presenter.RegistrationAction
 import com.example.feature.auth.impl.presentation.presenter.RegistrationEvent
 import com.example.feature.auth.impl.presentation.presenter.RegistrationScreenModel
 import com.example.feature.auth.impl.presentation.presenter.RegistrationScreenState
 
 class RegistrationScreen : Screen {
-    @OptIn(ExperimentalMaterial3Api::class)
+
     @Composable
     override fun Content() {
         val navigator = LocalNavigator.currentOrThrow
@@ -69,17 +71,21 @@ fun RegistrationContent(
     screenState: RegistrationScreenState,
     eventHandler: (RegistrationEvent) -> Unit,
 ) {
-//    if (screenState.foods == null) {
-//        eventHandler.invoke(HomeEvent.OnLoadFood)
-    if (screenState.isLoading) {
-        CircularProgressIndicator(
-            modifier = Modifier
-                .fillMaxSize()
-                .wrapContentWidth(Alignment.CenterHorizontally)
-                .wrapContentHeight(Alignment.CenterVertically)
-        )
+    if (screenState.isAuthenticated == null) {
+        eventHandler.invoke(RegistrationEvent.IsAuthenticatedCheck)
     } else {
-        RegistrationUI(eventHandler)
+//        eventHandler.invoke(RegistrationEvent.OnNavigate(homeScreen))
+//    } else if (!screenState.isAuthenticated) {
+        if (screenState.isLoading) {
+            CircularProgressIndicator(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .wrapContentWidth(Alignment.CenterHorizontally)
+                    .wrapContentHeight(Alignment.CenterVertically)
+            )
+        } else {
+            RegistrationUI(eventHandler, screenState)
+        }
     }
 }
 
@@ -93,7 +99,7 @@ private fun RegistrationScreenActions(
         when (screenAction) {
             null -> Unit
             is RegistrationAction.Navigate -> {
-                navigator.push(AuthorizationScreen())
+                navigator.push(screenAction.screen)
             }
 
             is RegistrationAction.ShowToast -> {
@@ -106,43 +112,49 @@ private fun RegistrationScreenActions(
 @Composable
 fun RegistrationUI(
     eventHandler: (RegistrationEvent) -> Unit,
+    screenState: RegistrationScreenState,
 ) {
+    Log.e("TAG", screenState.isAuthenticated.toString())
+    if (screenState.isAuthenticated == true) {
+        val homeScreen = rememberScreen(SharedScreen.HomeScreen)
+        eventHandler.invoke(RegistrationEvent.OnNavigate(homeScreen))
+    } else {
+        var login by rememberSaveable { mutableStateOf("") }
+        var password by rememberSaveable { mutableStateOf("") }
 
-    var login by rememberSaveable { mutableStateOf("") }
-    var password by rememberSaveable { mutableStateOf("") }
-
-    Column(
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        TextField(
-            value = login,
-            onValueChange = { login = it },
-            label = { Text("Enter login") },
-        )
-
-        TextField(
-            value = password,
-            onValueChange = { password = it },
-            label = { Text("Enter password") },
-            visualTransformation = PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
-        )
-
-        Button(onClick = {
-            eventHandler.invoke(
-                RegistrationEvent.OnRegisterUser(
-                    login,
-                    password
-                )
+        Column(
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            TextField(
+                value = login,
+                onValueChange = { login = it },
+                label = { Text("Enter login") },
             )
-        }) {
-            Text(text = "Зарегистрироваться")
+
+            TextField(
+                value = password,
+                onValueChange = { password = it },
+                label = { Text("Enter password") },
+                visualTransformation = PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+            )
+
+            Button(onClick = {
+                eventHandler.invoke(
+                    RegistrationEvent.OnRegisterUser(
+                        login,
+                        password
+                    )
+                )
+            }) {
+                Text(text = "Зарегистрироваться")
+            }
+            Text(text = "У меня уже есть аккаунт",
+                modifier = Modifier.clickable {
+                    eventHandler.invoke(RegistrationEvent.OnNavigate(AuthorizationScreen()))
+                })
         }
-        Text(text = "У меня уже есть аккаунт",
-            modifier = Modifier.clickable {
-                eventHandler.invoke(RegistrationEvent.OnNavigateClick)
-            })
     }
 }
 

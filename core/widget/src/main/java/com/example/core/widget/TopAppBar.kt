@@ -4,7 +4,7 @@ package com.example.core.widget
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -29,7 +29,7 @@ fun TopAppBar(
     navigator: Navigator,
 ) {
     val cartScreen = rememberScreen(SharedScreen.CartScreen)
-    val searchScreen = rememberScreen(SharedScreen.SearchScreen)
+    val profileScreen = rememberScreen(SharedScreen.ProfileScreen)
     val homeScreen = rememberScreen(SharedScreen.HomeScreen)
 
     CenterAlignedTopAppBar(
@@ -54,10 +54,10 @@ fun TopAppBar(
                     contentDescription = null
                 )
             }
-            IconButton(onClick = { navigator.push(searchScreen) }) {
+            IconButton(onClick = { navigator.push(profileScreen) }) {
                 Icon(
-                    imageVector = Icons.Filled.Search,
-                    contentDescription = "Localized description"
+                    imageVector = Icons.Filled.Person,
+                    contentDescription = null
                 )
             }
         },
@@ -65,7 +65,7 @@ fun TopAppBar(
             IconButton(onClick = { navigator.push(homeScreen) }) {
                 Icon(
                     imageVector = Icons.Filled.Home,
-                    contentDescription = "Localized description"
+                    contentDescription = null
                 )
             }
         },
