@@ -3,8 +3,13 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.detekt)
     alias(libs.plugins.google.service)
-    id("com.google.firebase.crashlytics")
-    id("com.google.firebase.firebase-perf")
+    alias(libs.plugins.firebaseCrashlytics)
+//    id("com.google.firebase.crashlytics")
+    alias(libs.plugins.firebasePerformance)
+//    id("com.google.firebase.firebase-perf")
+    alias(libs.plugins.firebaseAppDistribution)
+//    id("com.google.firebase.appdistribution")
+
 }
 
 android {
