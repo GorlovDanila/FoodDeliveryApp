@@ -122,7 +122,6 @@ private fun HomeScreenActions(
             is HomeAction.Navigate -> {
                 navigator.push(DetailsScreen(screenAction.foodId))
             }
-
             is HomeAction.ShowToast -> {
                 Toast.makeText(context, screenAction.text, Toast.LENGTH_LONG).show()
             }
@@ -139,9 +138,7 @@ fun FoodList(
     LazyVerticalGrid(
         columns = GridCells.Adaptive(minSize = 200.dp),
         modifier = Modifier
-//            .fillMaxSize()
             .padding(top = 68.dp)
-//            .background(FoodDeliveryAppTheme.colors.primaryBackground)
     ) {
         viewState.foods?.listFood?.let { list ->
             items(
@@ -170,7 +167,6 @@ fun MyListItem(
             },
         elevation = CardDefaults.cardElevation(12.dp),
     ) {
-//        Row(horizontalArrangement = Arrangement.SpaceEvenly) {
         SubcomposeAsyncImage(
             model = foodInfo.imageUrl,
             contentDescription = null,
@@ -196,13 +192,11 @@ fun MyListItem(
             Text(
                 text = foodInfo.title,
                 textAlign = TextAlign.Center,
-//                    style = MyTheme.typography.globalTextStyle
             )
             Text(
                 modifier = Modifier.padding(top = 4.dp),
                 text = foodInfo.price,
                 textAlign = TextAlign.Center,
-//                    style = MyTheme.typography.globalTextStyle
             )
         }
     }

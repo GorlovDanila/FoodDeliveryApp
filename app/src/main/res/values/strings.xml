@@ -6,4 +6,12 @@
     <string name="msg_subscribed">Subscribed to weather topic</string>
     <string name="msg_subscribe_failed">Failed to subscribe to weather topic</string>
     <string name="msg_token_fmt" translatable="false">FCM registration Token: %s</string>
+    <string name="notifications_permission_granted">Notifications permission granted</string>
+    <string name="fcm_cant_post_notifications_without_permission">FCM cannot post notifications without POST_NOTIFICATIONS permission</string>
+    <string name="fetching_fcm_registration_token_failed">Fetching FCM registration token failed</string>
+    <string name="from">From: %s</string>
+    <string name="message_data_payload">Message data payload: %s</string>
+    <string name="message_notification_body">Message Notification Body: %s</string>
+    <string name="refreshed_token">Refreshed token: %s</string>
+    <string name="channel_title">Channel human readable title</string>
 </resources>

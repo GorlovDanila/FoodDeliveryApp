@@ -1,6 +1,5 @@
 package com.example.fooddeliveryapp.utils.service
 
-import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -20,27 +19,20 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
 
-        Timber.tag(TAG).d("From: %s", remoteMessage.from)
+        Timber.tag(TAG).d(getString(R.string.from, remoteMessage.from))
 
         if (remoteMessage.data.isNotEmpty()) {
-            Timber.tag(TAG).d("Message data payload: %s", remoteMessage.data)
+            Timber.tag(TAG).d(getString(R.string.message_data_payload, remoteMessage.data))
         }
 
         remoteMessage.notification?.let {
-            Timber.tag(TAG).d("Message Notification Body: %s", it.body)
+            Timber.tag(TAG).d(getString(R.string.message_notification_body, it.body))
             it.body?.let { body -> sendNotification(body) }
         }
     }
 
     override fun onNewToken(token: String) {
-        Timber.tag(TAG).d("Refreshed token: %s", token)
-
-        sendRegistrationToServer(token)
-    }
-
-    @SuppressLint("TimberArgCount")
-    private fun sendRegistrationToServer(token: String?) {
-        Timber.tag(TAG).d("%s)", "sendRegistrationTokenToServer(%s", token)
+        Timber.tag(TAG).d(getString(R.string.refreshed_token, token))
     }
 
     private fun sendNotification(messageBody: String) {
@@ -69,7 +61,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         val channel = NotificationChannel(
             channelId,
-            "Channel human readable title",
+            getString(R.string.channel_title),
             NotificationManager.IMPORTANCE_DEFAULT,
         )
         notificationManager.createNotificationChannel(channel)

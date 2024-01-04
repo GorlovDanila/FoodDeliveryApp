@@ -5,7 +5,9 @@ import com.example.feature.auth.api.repository.UserRepository
 import com.example.feature.auth.api.usecase.AuthorizeUserUseCase
 import com.example.feature.auth.api.usecase.GetCurrentUserUseCase
 import com.example.feature.auth.api.usecase.IsAuthenticatedUserUseCase
+import com.example.feature.auth.api.usecase.IsFirstLaunchUserUseCase
 import com.example.feature.auth.api.usecase.OnAuthenticationUserUseCase
+import com.example.feature.auth.api.usecase.OnFirstLaunchUserUseCase
 import com.example.feature.auth.api.usecase.OnSignOutUserUseCase
 import com.example.feature.auth.api.usecase.RegisterUserUseCase
 import com.example.feature.auth.api.usecase.SaveCurrentUserUseCase
@@ -17,7 +19,9 @@ import com.example.feature.auth.impl.presentation.presenter.RegistrationScreenMo
 import com.example.feature.auth.impl.usecase.AuthorizeUserUseCaseImpl
 import com.example.feature.auth.impl.usecase.GetCurrentUserUseCaseImpl
 import com.example.feature.auth.impl.usecase.IsAuthenticatedUserUseCaseImpl
+import com.example.feature.auth.impl.usecase.IsFirstLaunchUserUseCaseImpl
 import com.example.feature.auth.impl.usecase.OnAuthenticationUserUseCaseImpl
+import com.example.feature.auth.impl.usecase.OnFirstLaunchUserUseCaseImpl
 import com.example.feature.auth.impl.usecase.OnSignOutUseCaseImpl
 import com.example.feature.auth.impl.usecase.RegisterUserUseCaseImpl
 import com.example.feature.auth.impl.usecase.SaveCurrentUserUseCaseImpl
@@ -76,10 +80,22 @@ val authModule = module {
             userRepository = get()
         )
     }
+    single {
+        provideOnFirstLaunchUserUseCase(
+            userRepository = get()
+        )
+    }
+    single {
+        provideIsFirstLaunchUserUseCase(
+            userRepository = get()
+        )
+    }
+
     factory {
         RegistrationScreenModel(
             registerUserUseCase = get(),
             isAuthenticatedUserUseCase = get(),
+            isFirstLaunchUserUseCase = get(),
         )
     }
     factory {
@@ -132,3 +148,11 @@ private fun provideOnAuthenticationUserUseCase(
 private fun provideIsAuthenticatedUserUseCase(
     userRepository: UserRepository
 ): IsAuthenticatedUserUseCase = IsAuthenticatedUserUseCaseImpl(userRepository)
+
+private fun provideOnFirstLaunchUserUseCase(
+    userRepository: UserRepository
+): OnFirstLaunchUserUseCase = OnFirstLaunchUserUseCaseImpl(userRepository)
+
+private fun provideIsFirstLaunchUserUseCase(
+    userRepository: UserRepository
+): IsFirstLaunchUserUseCase = IsFirstLaunchUserUseCaseImpl(userRepository)

@@ -13,6 +13,10 @@ interface UserRepository {
 
     suspend fun isAuthenticated() : Boolean?
 
+    suspend fun onFirstLaunch() : Preferences
+
+    suspend fun isFirstLaunch() : Boolean?
+
     suspend fun saveCurrentUser(login: String, password: String) : Preferences
 
     suspend fun getCurrentUser() : User

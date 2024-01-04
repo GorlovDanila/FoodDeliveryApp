@@ -28,6 +28,12 @@ class UserRepositoryImpl(
     override suspend fun isAuthenticated(): Boolean? =
         withContext(dispatcherIO) { authDataStore.isAuthenticated() }
 
+    override suspend fun onFirstLaunch(): Preferences =
+        withContext(dispatcherIO) { authDataStore.onFirstLaunch() }
+
+    override suspend fun isFirstLaunch(): Boolean? =
+        withContext(dispatcherIO) { authDataStore.isFirstLaunch() }
+
     override suspend fun saveCurrentUser(login: String, password: String): Preferences =
         withContext(dispatcherIO) {
             authDataStore.onAuthentication()

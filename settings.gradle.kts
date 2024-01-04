@@ -30,7 +30,6 @@ include(":core:network")
 include(":core:presentation")
 include(":core:db")
 include(":core:navigation")
-include(":core:di")
 
 include(":feature")
 include(":feature:home")

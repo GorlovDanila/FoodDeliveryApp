@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="exit">Выйти</string>
+    <string name="login">Ваш логин: %s</string>
+    <string name="password">Ваш пароль: %s</string>
+</resources>

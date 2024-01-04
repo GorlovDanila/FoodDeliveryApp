@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="structure">Состав:</string>
+    <string name="kcal">%s kcal</string>
+    <string name="indicated_for_100g_of_the_dish">* указано на 100г. блюда</string>
+    <string name="add_to_cart">Добавить в корзину</string>
+</resources>

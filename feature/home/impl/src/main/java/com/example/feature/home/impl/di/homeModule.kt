@@ -64,4 +64,3 @@ private fun provideGetFoodByIdUseCase(
 private fun provideGetFoodListUseCase(
     foodRepository: FoodRepository
 ): GetFoodListUseCase = GetFoodListUseCaseImpl(foodRepository)
-

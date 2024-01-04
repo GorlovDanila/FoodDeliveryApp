@@ -2,4 +2,6 @@
 <resources>
     <string name="arrange">ОФОРМИТЬ!</string>
     <string name="error">Произошла неизвестная ошибка!</string>
+    <string name="nil">0</string>
+    <string name="empty_cart">Ваша корзина пуста:(</string>
 </resources>

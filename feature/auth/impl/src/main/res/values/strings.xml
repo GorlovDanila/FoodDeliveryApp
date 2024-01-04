@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="user_is_not_exist">Пользователя с такими данными не существует</string>
+    <string name="enter_login">Введите логин</string>
+    <string name="enter_password">Введите пароль</string>
+    <string name="registration">Зарегистрироваться</string>
+    <string name="i_already_have_acc">У меня уже есть аккаунт</string>
+    <string name="enter">Войти</string>
+</resources>

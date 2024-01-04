@@ -4,12 +4,8 @@ plugins {
     alias(libs.plugins.detekt)
     alias(libs.plugins.google.service)
     alias(libs.plugins.firebaseCrashlytics)
-//    id("com.google.firebase.crashlytics")
     alias(libs.plugins.firebasePerformance)
-//    id("com.google.firebase.firebase-perf")
     alias(libs.plugins.firebaseAppDistribution)
-//    id("com.google.firebase.appdistribution")
-
 }
 
 android {
@@ -61,7 +57,6 @@ android {
 
 dependencies {
 
-    implementation(project(":core:di"))
     implementation(project(":core:designsystem"))
     implementation(project(":core:navigation"))
     implementation(project(":core:network"))
@@ -89,7 +84,6 @@ dependencies {
     implementation(libs.firebase.crashlytics)
     implementation(libs.firebase.perf)
     implementation(libs.firebase.messaging)
-    implementation(libs.androidx.work.runtime.ktx)
 
     testImplementation(libs.junit)
 

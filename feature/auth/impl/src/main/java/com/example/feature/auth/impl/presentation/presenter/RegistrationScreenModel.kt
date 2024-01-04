@@ -1,11 +1,11 @@
 package com.example.feature.auth.impl.presentation.presenter
 
-import android.util.Log
 import androidx.compose.runtime.Immutable
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import cafe.adriel.voyager.core.screen.Screen
 import com.example.feature.auth.api.usecase.IsAuthenticatedUserUseCase
+import com.example.feature.auth.api.usecase.IsFirstLaunchUserUseCase
 import com.example.feature.auth.api.usecase.RegisterUserUseCase
 import com.example.feature.auth.impl.presentation.ui.AuthorizationScreen
 import com.example.feature.auth.impl.utils.AuthConstants
@@ -22,12 +22,14 @@ import retrofit2.HttpException
 data class RegistrationScreenState(
     val isLoading: Boolean = false,
     val isAuthenticated: Boolean? = null,
+    val isFirstLaunch: Boolean? = null,
 )
 
 sealed interface RegistrationEvent {
     data class OnRegisterUser(val login: String, val password: String) : RegistrationEvent
     data class OnNavigate(val screen: Screen) : RegistrationEvent
     data object IsAuthenticatedCheck : RegistrationEvent
+    data object IsFirstLaunchCheck : RegistrationEvent
 }
 
 sealed interface RegistrationAction {
@@ -38,6 +40,7 @@ sealed interface RegistrationAction {
 class RegistrationScreenModel(
     private val registerUserUseCase: RegisterUserUseCase,
     private val isAuthenticatedUserUseCase: IsAuthenticatedUserUseCase,
+    private val isFirstLaunchUserUseCase: IsFirstLaunchUserUseCase,
 ) : ScreenModel {
 
     private val _state = MutableStateFlow(RegistrationScreenState())
@@ -56,6 +59,7 @@ class RegistrationScreenModel(
             )
             is RegistrationEvent.OnNavigate -> onNavigate(registrationEvent.screen)
             is RegistrationEvent.IsAuthenticatedCheck -> isAuthenticatedCheck()
+            is RegistrationEvent.IsFirstLaunchCheck -> isFirstLaunchCheck()
         }
     }
 
@@ -94,13 +98,21 @@ class RegistrationScreenModel(
 
     private fun isAuthenticatedCheck() {
         screenModelScope.launch {
-//            Log.e("authCheck", isAuthenticatedUserUseCase.invoke().toString())
             _state.emit(
                 _state.value.copy(
                     isAuthenticated = isAuthenticatedUserUseCase.invoke()
                 )
             )
-            Log.e("authCheck", state.value.isAuthenticated.toString())
+        }
+    }
+
+    private fun isFirstLaunchCheck() {
+        screenModelScope.launch {
+            _state.emit(
+                _state.value.copy(
+                    isFirstLaunch = isFirstLaunchUserUseCase.invoke()
+                )
+            )
         }
     }
 }

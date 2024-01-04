@@ -1,10 +1,14 @@
 package com.example.feature.profile.impl.presentation.ui
 
 import android.widget.Toast
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -18,8 +22,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cafe.adriel.voyager.core.registry.rememberScreen
@@ -30,6 +39,7 @@ import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.example.core.navigation.SharedScreen
 import com.example.core.widget.TopAppBar
+import com.example.feature.profile.impl.R
 import com.example.feature.profile.impl.presentation.presenter.ProfileAction
 import com.example.feature.profile.impl.presentation.presenter.ProfileEvent
 import com.example.feature.profile.impl.presentation.presenter.ProfileScreenModel
@@ -121,17 +131,39 @@ fun ProfileUI(
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.padding(top = 128.dp)
+        modifier = Modifier.padding(top = 128.dp, start = 148.dp)
     ) {
-//        Image(painter = , contentDescription = )
-        viewState.userInfo?.login?.let { Text(text = it) }
-        viewState.userInfo?.password?.let { Text(text = it) }
-        Button(onClick = {
-            eventHandler.invoke(
-                ProfileEvent.OnSignOutClick
+        Image(
+            painter = painterResource(R.drawable.working),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .size(156.dp)
+                .clip(CircleShape) // clip to the circle shape
+                .border(5.dp, Color.Transparent, CircleShape)//optional
+        )
+        viewState.userInfo?.login?.let {
+            Text(
+                text = stringResource(id = R.string.login, it),
+                modifier = Modifier.padding(top = 24.dp)
             )
-        }) {
-            Text(text = "Выйти")
+        }
+        viewState.userInfo?.password?.let {
+            Text(
+                text = stringResource(
+                    id = R.string.password,
+                    it
+                )
+            )
+        }
+        Button(
+            modifier = Modifier.padding(top = 54.dp),
+            onClick = {
+                eventHandler.invoke(
+                    ProfileEvent.OnSignOutClick
+                )
+            }) {
+            Text(text = stringResource(id = R.string.exit))
         }
     }
 }

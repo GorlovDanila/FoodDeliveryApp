@@ -39,7 +39,7 @@ fun TopAppBar(
         ),
         title = {
             Text(
-                "App Bar",
+                "Food Delivery",
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )

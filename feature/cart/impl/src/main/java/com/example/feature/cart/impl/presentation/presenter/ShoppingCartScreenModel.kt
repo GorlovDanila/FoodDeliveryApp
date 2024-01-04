@@ -1,6 +1,5 @@
 package com.example.feature.cart.impl.presentation.presenter
 
-import android.util.Log
 import androidx.compose.runtime.Immutable
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
@@ -76,7 +75,7 @@ class ShoppingCartScreenModel(
                         products = getAllProductsUseCase.invoke().toPersistentList()
                     )
                 )
-                Log.e("list", state.value.products.toString())
+                onSumPrice()
             } catch (e: Exception) {
                 _action.emit(ShoppingCartAction.ShowToast(ERROR))
             }
@@ -87,7 +86,6 @@ class ShoppingCartScreenModel(
         screenModelScope.launch {
             try {
                 updateProductUseCase(productInfo.copy(count = productInfo.count + 1))
-                onSumPrice()
                 onLoadProducts()
             } catch (e: Exception) {
                 _action.emit(ShoppingCartAction.ShowToast(ERROR))
@@ -103,7 +101,6 @@ class ShoppingCartScreenModel(
                 } else {
                     updateProductUseCase(productInfo.copy(count = productInfo.count - 1))
                 }
-                onSumPrice()
                 onLoadProducts()
             } catch (e: Exception) {
                 _action.emit(ShoppingCartAction.ShowToast(ERROR))
@@ -123,6 +120,5 @@ class ShoppingCartScreenModel(
         _action.emit(ShoppingCartAction.ShowToast(SUCCESS))
         deleteAllProductsUseCase.invoke()
         onLoadProducts()
-        onSumPrice()
     }
 }
