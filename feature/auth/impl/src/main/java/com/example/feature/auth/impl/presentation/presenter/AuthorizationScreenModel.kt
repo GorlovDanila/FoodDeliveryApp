@@ -1,6 +1,5 @@
 package com.example.feature.auth.impl.presentation.presenter
 
-import android.util.Log
 import androidx.compose.runtime.Immutable
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
@@ -71,7 +70,6 @@ class AuthorizationScreenModel(
                 } else {
                     saveCurrentUserUseCase.invoke(login, password)
                     onAuthenticationUserUseCase.invoke()
-                    Log.e("eeeeeeeeeeeeeeeeeee", getCurrentUserUseCase.invoke().toString())
                     onNavigateClick()
                 }
 

@@ -25,12 +25,12 @@ class MainActivity : ComponentActivity() {
         ActivityResultContracts.RequestPermission(),
     ) { isGranted: Boolean ->
         if (isGranted) {
-            Toast.makeText(this, "Notifications permission granted", Toast.LENGTH_SHORT)
+            Toast.makeText(this, getString(R.string.notifications_permission_granted), Toast.LENGTH_SHORT)
                 .show()
         } else {
             Toast.makeText(
                 this,
-                "FCM can't post notifications without POST_NOTIFICATIONS permission",
+                getString(R.string.fcm_cant_post_notifications_without_permission),
                 Toast.LENGTH_LONG,
             ).show()
         }
@@ -43,7 +43,7 @@ class MainActivity : ComponentActivity() {
 
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
-                Timber.tag(TAG).w(task.exception, "Fetching FCM registration token failed")
+                Timber.tag(TAG).w(task.exception, getString(R.string.fetching_fcm_registration_token_failed))
                 return@OnCompleteListener
             }
 
@@ -58,31 +58,6 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             FoodDeliveryAppTheme {
-//                A surface container using the 'background' color from the theme
-//                Surface(
-//                    modifier = Modifier.fillMaxSize(),
-////                    color = MaterialTheme.colorScheme.background
-//                ) {
-//                    val scrollBehavior =
-//                        TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
-//                    Scaffold(
-//                        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-////                        topBar = { TopAppBar(scrollBehavior) { Navigator(HomeScreen()) } },
-//
-//                        ) { innerPadding ->
-//                        Column(
-//                            modifier = Modifier
-//                                .padding(innerPadding),
-//                            verticalArrangement = Arrangement.spacedBy(16.dp),
-//                        ) {
-//                            Text(
-//                                modifier = Modifier.padding(8.dp),
-//                                text =
-//                                "This is an example of a scaffold.",
-//                            )
-//                        }
-//                    }
-//                }
                 Navigator(screen = RegistrationScreen())
             }
         }

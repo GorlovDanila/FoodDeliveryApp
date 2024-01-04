@@ -4,6 +4,7 @@ import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.text.KeyboardOptions
@@ -22,8 +23,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.unit.dp
+import com.example.feature.auth.impl.R
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cafe.adriel.voyager.core.registry.rememberScreen
 import cafe.adriel.voyager.core.screen.Screen
@@ -116,18 +120,20 @@ fun AuthorizationUI(
         TextField(
             value = login,
             onValueChange = { login = it },
-            label = { Text("Enter login") },
+            label = { Text(text = stringResource(id = R.string.enter_login)) },
         )
 
         TextField(
             value = password,
             onValueChange = { password = it },
-            label = { Text("Enter password") },
+            label = { Text(text = stringResource(id = R.string.enter_password)) },
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
         )
 
-        Button(onClick = {
+        Button(
+            modifier = Modifier.padding(16.dp),
+            onClick = {
             eventHandler.invoke(
                 AuthorizationEvent.OnAuthorizeUser(
                     login,
@@ -135,7 +141,7 @@ fun AuthorizationUI(
                 )
             )
         }) {
-            Text(text = "Войти")
+            Text(text = stringResource(id = R.string.enter))
         }
     }
 }

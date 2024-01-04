@@ -25,16 +25,21 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import coil.compose.AsyncImagePainter
+import com.example.feature.home.impl.R
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
 import com.example.core.widget.TopAppBar
@@ -139,7 +144,6 @@ fun DetailItem(
         modifier = Modifier
             .fillMaxSize()
             .padding(top = 68.dp)
-//        .background(MyTheme.colors.primaryBackground)
     ) {
         item {
             Column(
@@ -169,39 +173,41 @@ fun DetailItem(
                 Column(modifier = Modifier.fillMaxWidth()) {
                     Text(
                         text = "${foodInfo?.title}",
+                        color = Color.Black,
                         textAlign = TextAlign.Start,
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(4.dp),
-//                        color = MyTheme.colors.primaryText,
-//                        style = MyTheme.typography.globalTextStyle
+                        fontSize = 24.sp
                     )
                     Row {
                         Text(
                             text = "${foodInfo?.price}",
-//                            textAlign = TextAlign.Start,
                             modifier = Modifier
                                 .padding(4.dp),
-//                        color = MyTheme.colors.primaryText,
-//                        style = MyTheme.typography.globalTextStyle
+                            textDecoration = TextDecoration.Underline,
+                            color = Color.Black,
                         )
                         Text(
                             text = "${foodInfo?.weight}",
-//                            textAlign = TextAlign.Start,
                             modifier = Modifier
                                 .padding(4.dp),
-//                        color = MyTheme.colors.primaryText,
-//                        style = MyTheme.typography.globalTextStyle
                         )
                     }
+                    Text(
+                        text = stringResource(id = R.string.structure),
+                        textAlign = TextAlign.Start,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(4.dp),
+                        fontSize = 18.sp
+                    )
                     Text(
                         text = "${foodInfo?.recipe}",
                         textAlign = TextAlign.Start,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(4.dp),
-//                        color = MyTheme.colors.primaryText,
-//                        style = MyTheme.typography.globalTextStyle
+                            .padding(start = 4.dp),
                     )
                     Row(
                         modifier = Modifier.fillMaxWidth()
@@ -211,72 +217,47 @@ fun DetailItem(
                             textAlign = TextAlign.Start,
                             modifier = Modifier
                                 .padding(4.dp),
-//                            color = MyTheme.colors.primaryText,
-//                            style = MyTheme.typography.globalTextStyle
                         )
                         Text(
                             text = "${foodInfo?.proteins} белки",
                             textAlign = TextAlign.Start,
                             modifier = Modifier
                                 .padding(4.dp),
-//                            color = MyTheme.colors.primaryText,
-//                            style = MyTheme.typography.globalTextStyle
                         )
                         Text(
                             text = "${foodInfo?.fats} жиры",
                             textAlign = TextAlign.Start,
                             modifier = Modifier
                                 .padding(4.dp),
-//                            color = MyTheme.colors.primaryText,
-//                            style = MyTheme.typography.globalTextStyle
                         )
                         Text(
                             text = "${foodInfo?.carbohydrates} углеводы",
                             textAlign = TextAlign.Start,
                             modifier = Modifier
                                 .padding(4.dp),
-//                            color = MyTheme.colors.primaryText,
-//                            style = MyTheme.typography.globalTextStyle
                         )
                     }
                     Text(
-                        text = "* указано на 100г. блюда",
+                        text = stringResource(id = R.string.indicated_for_100g_of_the_dish),
                         textAlign = TextAlign.Start,
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(4.dp),
-//                        color = MyTheme.colors.primaryText,
-//                        style = MyTheme.typography.globalTextStyle
+                        fontSize = 12.sp
                     )
 
                     Button(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(4.dp),
+                            .padding(24.dp),
                         onClick = { eventHandler.invoke(DetailsEvent.OnAddToCart) },
                         shape = RoundedCornerShape(20.dp)
                     ) {
-//                        Image(
-//                            painterResource(id = R.drawable.ic_cart),
-//                            contentDescription = "Cart button icon",
-//                            modifier = Modifier.size(20.dp)
-//                        )
-
                         Text(
-                            text = "Add to cart",
-                            modifier = Modifier.padding(start = 10.dp)
+                            text = stringResource(id = R.string.add_to_cart),
+                            modifier = Modifier.padding(10.dp)
                         )
                     }
-
-//                    Text(
-//                        text = "${animInfo?.synopsis}",
-//                        textAlign = TextAlign.Start,
-//                        modifier = Modifier
-//                            .fillMaxWidth()
-//                            .padding(4.dp),
-//                        color = MyTheme.colors.primaryText,
-//                        style = MyTheme.typography.globalTextStyle
-//                    )
                 }
             }
         }

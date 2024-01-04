@@ -1,6 +1,5 @@
 package com.example.feature.profile.impl.presentation.presenter
 
-import android.util.Log
 import androidx.compose.runtime.Immutable
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
@@ -52,15 +51,12 @@ class ProfileScreenModel(
 
     private fun onLoadUser() {
         screenModelScope.launch {
-            Log.e("user", getCurrentUserUseCase.invoke().toString())
-
             try {
                 _state.emit(
                     _state.value.copy(
                         userInfo = getCurrentUserUseCase.invoke()
                     )
                 )
-                Log.e("user", _state.value.userInfo.toString())
             } catch (e: Exception) {
                 _action.emit(ProfileAction.ShowToast("An unexpected error has occurred: ${e}!"))
             }

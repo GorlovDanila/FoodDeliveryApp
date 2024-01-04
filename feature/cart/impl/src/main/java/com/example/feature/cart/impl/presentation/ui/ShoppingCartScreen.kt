@@ -15,6 +15,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -24,7 +25,9 @@ import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -96,17 +99,20 @@ fun ShoppingCartContent(
     screenState: ShoppingCartScreenState,
     eventHandler: (ShoppingCartEvent) -> Unit,
 ) {
-//    if (screenState.products == null) {
-    eventHandler.invoke(ShoppingCartEvent.OnSumPrice)
     eventHandler.invoke(ShoppingCartEvent.OnLoadProducts)
-//    } else {
-    if (screenState.products?.size == 0) {
-        Text(text = "Ваша корзина пуста", modifier = Modifier.padding(top = 125.dp))
+    if (screenState.sumPrice == stringResource(id = R.string.nil) && screenState.products?.size == 0) {
+        Column(
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(top = 125.dp, start = 125.dp)
+        ) {
+            Text(text = stringResource(id = R.string.empty_cart))
+        }
     } else {
         FoodList(screenState, eventHandler)
     }
-//    }
 }
+
 
 @Composable
 private fun ShoppingCartScreenActions(
@@ -130,10 +136,10 @@ fun FoodList(
 ) {
 
     LazyColumn(
+        horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-//            .fillMaxSize()
+            .fillMaxSize()
             .padding(top = 68.dp)
-//            .background(FoodDeliveryAppTheme.colors.primaryBackground)
     ) {
         viewState.products?.let { list ->
             items(
@@ -147,7 +153,7 @@ fun FoodList(
             }
         }
         item {
-            Row(modifier = Modifier.padding(start = 48.dp)) {
+            Row(modifier = Modifier.padding(16.dp) ) {
                 Button(onClick = { eventHandler.invoke(ShoppingCartEvent.OnCreateOrder) }) {
                     Row {
                         Text(text = viewState.sumPrice)
@@ -205,7 +211,6 @@ fun MyListItem(
                 Text(
                     text = productInfo.title,
                     textAlign = TextAlign.Center,
-//                    style = MyTheme.typography.globalTextStyle
                 )
 
                 Row(
@@ -213,39 +218,32 @@ fun MyListItem(
                     modifier = Modifier.padding(top = 72.dp)
                 ) {
                     Text(
-//                        modifier = Modifier.padding(top = 4.dp),
                         text = productInfo.price,
                         textAlign = TextAlign.Center,
-//                    style = MyTheme.typography.globalTextStyle
                     )
-                    Button(
+                    IconButton(
                         onClick = { onMinusClick(productInfo) },
                         modifier = Modifier
                             .padding(start = 48.dp)
-                            .size(36.dp)
-                    ) {
+                            .size(36.dp)) {
                         Image(
                             painterResource(id = R.drawable.ic_minus),
                             contentDescription = null,
-                            modifier = Modifier.size(12.dp)
                         )
                     }
                     Text(
-//                        modifier = Modifier.padding(top = 4.dp),
-                        modifier = Modifier.padding(horizontal = 8.dp),
+                        modifier = Modifier.padding(start = 8.dp, top = 4.dp, end = 8.dp),
                         text = productInfo.count.toString(),
+                        color = Color.Black,
                         textAlign = TextAlign.Center,
-//                    style = MyTheme.typography.globalTextStyle
                     )
-                    Button(
+                    IconButton(
                         onClick = { onPlusClick(productInfo) },
                         modifier = Modifier
-                            .size(36.dp)
-                    ) {
+                            .size(36.dp)) {
                         Image(
                             painterResource(id = R.drawable.ic_add),
                             contentDescription = null,
-                            modifier = Modifier.size(20.dp)
                         )
                     }
                 }
