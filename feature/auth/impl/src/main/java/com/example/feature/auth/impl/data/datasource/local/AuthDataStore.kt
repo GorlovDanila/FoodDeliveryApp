@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 
-class AuthDataStore(
+internal class AuthDataStore(
     private val context: Context,
     private val dispatcherIO: CoroutineDispatcher = Dispatchers.IO,
 ) {
