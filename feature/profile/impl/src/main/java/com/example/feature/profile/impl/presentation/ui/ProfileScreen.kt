@@ -131,7 +131,7 @@ fun ProfileUI(
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.padding(top = 128.dp, start = 148.dp)
+        modifier = Modifier.padding(top = 128.dp, start = 136.dp)
     ) {
         Image(
             painter = painterResource(R.drawable.working),
