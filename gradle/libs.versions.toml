@@ -41,6 +41,7 @@ kotlinxImmutable = "0.3.5"
 kotlinxSerializationJson = "1.5.1"
 
 mockk = "1.12.4"
+junit-kotlin = "1.8.10"
 okhttp = "4.11.0"
 retrofit = "2.9.0" #Ktor
 retrofitKotlinxSerializationJson = "1.0.0"
@@ -120,6 +121,8 @@ datastore-core = { group = "androidx.datastore", name = "datastore-core", versio
 datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidxDatastore" }
 
 junit = { group = "junit", name = "junit", version.ref = "junit" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+junit-kotlin = { group = "org.jetbrains.kotlin", name = "kotlin-test-junit", version.ref = "junit-kotlin" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 google-services = { group = "com.google.gms", name = "google-services", version.ref = "googleServices" }

@@ -11,7 +11,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class UserRepositoryImpl(
+internal class UserRepositoryImpl(
     private val api: UserApi,
     private val authDataStore: AuthDataStore,
     private val dispatcherIO: CoroutineDispatcher = Dispatchers.IO,

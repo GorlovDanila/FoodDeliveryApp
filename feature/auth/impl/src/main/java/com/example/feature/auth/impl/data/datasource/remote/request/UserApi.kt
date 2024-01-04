@@ -5,7 +5,7 @@ import com.example.feature.auth.impl.data.datasource.remote.response.UserRespons
 import retrofit2.http.Body
 import retrofit2.http.POST
 
-interface UserApi {
+internal interface UserApi {
 
     @POST("user/registration")
     suspend fun registrationUser(

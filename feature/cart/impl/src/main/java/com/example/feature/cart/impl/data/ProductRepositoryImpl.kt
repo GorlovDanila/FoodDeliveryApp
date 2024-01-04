@@ -10,7 +10,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class ProductRepositoryImpl(
+internal class ProductRepositoryImpl(
     private val productDao: ProductDao,
     private val dispatcherIO: CoroutineDispatcher = Dispatchers.IO,
 ) : ProductRepository {
